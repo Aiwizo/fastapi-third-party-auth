@@ -1,13 +1,13 @@
 [tool.poetry]
-name = "fastapi-oidc"
+name = "fastapi-third-party-auth"
 version = "0.0.0"
-description = "A simple library for parsing and verifying externally issued OIDC ID tokens in fastapi."
-authors = ["HarryMWinters <harrymcwinters@gmail.com>"]
+description = "Simple library for using a third party authentication service like Keycloak or Auth0 with FastAPI"
+authors = ["HarryMWinters <harrymcwinters@gmail.com>", "Richard Löwenström <samedii@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-homepage = "https://github.com/HarryMWinters/fastapi-oidc"
-repository = "https://github.com/HarryMWinters/fastapi-oidc"
-documentation = "https://fastapi-oidc.readthedocs.io/en/latest/"
+homepage = "https://github.com/aiwizo/fastapi-third-party-auth"
+repository = "https://github.com/aiwizo/fastapi-third-party-auth"
+documentation = "https://fastapi-third-party-auth.readthedocs.io/en/latest/"
 
 [tool.poetry.dependencies]
 python = "^3.8"

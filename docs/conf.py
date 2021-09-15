@@ -17,7 +17,7 @@ from typing import List
 
 # -- Project information -----------------------------------------------------
 
-project = "fastapi-oidc"
+project = "fastapi-third-party-auth"
 copyright = "2020, Harry M. Winters"
 author = "Harry M. Winters"
 

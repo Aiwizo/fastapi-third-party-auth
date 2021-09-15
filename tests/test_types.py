@@ -1,7 +1,7 @@
 import pydantic
 import pytest
 
-from fastapi_oidc import idtoken_types
+from fastapi_third_party_auth import idtoken_types
 
 
 def test_IDToken_raises_with_bad_field_types():

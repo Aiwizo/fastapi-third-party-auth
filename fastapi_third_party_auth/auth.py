@@ -37,9 +37,9 @@ from jose import JWTError
 from jose import jwt
 from jose.exceptions import JWTClaimsError
 
-from fastapi_oidc import discovery
-from fastapi_oidc.grant_types import GrantType
-from fastapi_oidc.idtoken_types import IDToken
+from fastapi_third_party_auth import discovery
+from fastapi_third_party_auth.grant_types import GrantType
+from fastapi_third_party_auth.idtoken_types import IDToken
 
 
 class Auth(OAuth2):

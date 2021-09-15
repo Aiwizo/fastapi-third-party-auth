@@ -8,8 +8,8 @@ from fastapi import status
 from fastapi.middleware.cors import CORSMiddleware
 from starlette.responses import RedirectResponse
 
-from fastapi_oidc import Auth
-from fastapi_oidc import KeycloakIDToken
+from fastapi_third_party_auth import Auth
+from fastapi_third_party_auth import KeycloakIDToken
 
 auth = Auth(
     openid_connect_url="http://localhost:8080/auth/realms/my-realm/.well-known/openid-configuration",
@@ -56,6 +56,4 @@ def mixed(id_token: Optional[KeycloakIDToken] = Security(auth.optional)):
 
 
 if __name__ == "__main__":
-    uvicorn.run(
-        "example.main:cors", host="0.0.0.0", port=8000, loop="asyncio", reload=True
-    )
+    uvicorn.run("app.main:cors", host="0.0.0.0", port=8000, loop="asyncio", reload=True)

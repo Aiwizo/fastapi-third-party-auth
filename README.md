@@ -1,57 +1,66 @@
-# FastAPI OIDC
+# FastAPI Third Party Auth
 
 <p align="left">
-    <a href="https://github.com/HarryMWinters/fastapi-oidc/actions?query=workflow%3ATest"
+    <a href="https://github.com/aiwizo/fastapi-third-party-auth/actions?query=workflow%3ATest"
        target="_blank">
-       <img src="https://github.com/HarryMWinters/fastapi-oidc/workflows/Test/badge.svg"  
+       <img src="https://github.com/aiwizo/fastapi-third-party-auth/workflows/Test/badge.svg"  
             alt="Test">
     </a>
-    <a href='https://fastapi-oidc.readthedocs.io/en/latest/?badge=latest'>
-        <img src='https://readthedocs.org/projects/fastapi-oidc/badge/?version=latest' alt='Documentation Status' />
+    <a href='https://fastapi-third-party-auth.readthedocs.io/en/latest/?badge=latest'>
+        <img src='https://readthedocs.org/projects/fastapi-third-party-auth/badge/?version=latest' alt='Documentation Status' />
     </a>
-    <a href="https://pypi.org/project/fastapi-oidc" 
+    <a href="https://pypi.org/project/fastapi-third-party-auth" 
        target="_blank">
-       <img src="https://img.shields.io/pypi/v/fastapi-oidc?color=%2334D058&label=pypi%20package" 
+       <img src="https://img.shields.io/pypi/v/fastapi-third-party-auth?color=%2334D058&label=pypi%20package" 
             alt="Package version">
     </a>
 </p>
 
 ---
 
-**Documentation**: <a href="https://fastapi-oidc.readthedocs.io/" target="_blank">https://fastapi-oidc.readthedocs.io/</a>
+**Documentation**: <a href="https://fastapi-third-party-auth.readthedocs.io/" target="_blank">https://fastapi-third-party-auth.readthedocs.io/</a>
 
-**Source Code**: <a href="https://github.com/HarryMWinters/fastapi-oidc" target="_blank">https://github.com/HarryMWinters/fastapi-oidc</a>
+**Source Code**: <a href="https://github.com/aiwizo/fastapi-third-party-auth" target="_blank">https://github.com/aiwizo/fastapi-third-party-auth</a>
 
 ---
 
-Verify and decrypt 3rd party OpenID Connect tokens to protect your
-[FastAPI](https://github.com/tiangolo/fastapi) endpoints.
+Simple library for using a third party authentication service with 
+[FastAPI](https://github.com/tiangolo/fastapi). Verifies and decrypts 3rd party
+OpenID Connect tokens to protect your endpoints.
 
-Easily used with authenticators such as:
+Easily used with authentication services such as:
 - [Keycloak](https://www.keycloak.org/) (open source)
 - [SuperTokens](https://supertokens.io/) (open source)
 - [Auth0](https://auth0.com/)
 - [Okta](https://www.okta.com/products/authentication/)
 
-FastAPI's generated interactive documentation supports the grant flows
-`authorization_code`, `implicit`, `password` and `client_credentials`.
+FastAPI's generated interactive documentation supports the grant flows:
+```python3
+GrantType.AUTHORIZATION_CODE
+GrantType.IMPLICIT
+GrantType.PASSWORD
+GrantType.CLIENT_CREDENTIALS
+```
+
+![example documentation](example-docs.png)
 
 ## Installation
 
 ```
-poetry add fastapi-oidc
+poetry add fastapi-third-party-auth
 ```
 
 Or, for the old-timers:
 
 ```
-pip install fastapi-oidc
+pip install fastapi-third-party-auth
 ```
 
 ## Usage
 
-See this example for how to use `docker-compose` to set up authentication with
-fastapi-oidc + keycloak.
+See [this example](tree/master/example) for how to use
+`docker-compose` to set up authentication with `fastapi-third-party-auth` +
+[Keycloak](https://www.keycloak.org/).
 
 ### Standard usage
 
@@ -61,9 +70,9 @@ from fastapi import FastAPI
 from fastapi import Security
 from fastapi import status
 
-from fastapi_oidc import Auth
-from fastapi_oidc import GrantType
-from fastapi_oidc import KeycloakIDToken
+from fastapi_third_party_auth import Auth
+from fastapi_third_party_auth import GrantType
+from fastapi_third_party_auth import KeycloakIDToken
 
 auth = Auth(
     openid_connect_url="http://localhost:8080/auth/realms/my-realm/.well-known/openid-configuration",

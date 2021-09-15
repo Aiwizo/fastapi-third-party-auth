@@ -45,7 +45,7 @@ tasks:
     cmds:
       - poetry build
     sources:
-      - fastapi_oidc/**
+      - fastapi_third_party_auth/**
       - poetry.lock
       - pyproject.toml
     generates:

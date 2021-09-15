@@ -1,9 +1,9 @@
 from fastapi.security import HTTPAuthorizationCredentials
 from fastapi.security import SecurityScopes
 
-import fastapi_oidc
-from fastapi_oidc import Auth
-from fastapi_oidc.idtoken_types import IDToken
+import fastapi_third_party_auth
+from fastapi_third_party_auth import Auth
+from fastapi_third_party_auth.idtoken_types import IDToken
 
 
 def test__authenticate_user(
@@ -13,7 +13,9 @@ def test__authenticate_user(
     config_w_aud,
     test_email,
 ):
-    monkeypatch.setattr(fastapi_oidc.auth.discovery, "configure", mock_discovery)
+    monkeypatch.setattr(
+        fastapi_third_party_auth.auth.discovery, "configure", mock_discovery
+    )
 
     token = token_with_audience
 
@@ -37,7 +39,9 @@ def test__authenticate_user_no_aud(
     test_email,
 ):
 
-    monkeypatch.setattr(fastapi_oidc.auth.discovery, "configure", mock_discovery)
+    monkeypatch.setattr(
+        fastapi_third_party_auth.auth.discovery, "configure", mock_discovery
+    )
 
     token = token_without_audience
 
@@ -59,7 +63,9 @@ def test__authenticate_user_returns_custom_tokens(
     class CustomToken(IDToken):
         custom_field: str = "OnlySlightlyBent"
 
-    monkeypatch.setattr(fastapi_oidc.auth.discovery, "configure", mock_discovery)
+    monkeypatch.setattr(
+        fastapi_third_party_auth.auth.discovery, "configure", mock_discovery
+    )
 
     token = token_without_audience
 

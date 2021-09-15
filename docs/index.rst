@@ -1,4 +1,4 @@
-Welcome to fastapi-oidc's documentation!
+Welcome to fastapi-third-party-auth's documentation!
 ========================================
 
 Verify and decrypt 3rd party OpenID Connect tokens to protect your
@@ -31,13 +31,13 @@ Installation
 
 .. code-block:: bash
 
-   poetry add fastapi-oidc
+   poetry add fastapi-third-party-auth
    
 Or, for the old-timers:
 
 .. code-block:: bash
 
-   pip install fastapi-oidc
+   pip install fastapi-third-party-auth
 
 Example
 -------
@@ -51,9 +51,9 @@ Basic configuration for verifying OIDC tokens.
    from fastapi import Security
    from fastapi import status
 
-   from fastapi_oidc import Auth
-   from fastapi_oidc import GrantType
-   from fastapi_oidc import KeycloakIDToken
+   from fastapi_third_party_auth import Auth
+   from fastapi_third_party_auth import GrantType
+   from fastapi_third_party_auth import KeycloakIDToken
 
    auth = Auth(
       openid_connect_url="http://localhost:8080/auth/realms/my-realm/.well-known/openid-configuration",
@@ -80,16 +80,16 @@ API Reference
 
 Auth
 ----
-.. automodule:: fastapi_oidc.auth
+.. automodule:: fastapi_third_party_auth.auth
    :members:
 
 Grant Types
 -----------
-.. automodule:: fastapi_oidc.grant_types
+.. automodule:: fastapi_third_party_auth.grant_types
    :members:
    :undoc-members:
 
 IDToken Types
 -------------
-.. automodule:: fastapi_oidc.idtoken_types
+.. automodule:: fastapi_third_party_auth.idtoken_types
    :members:
