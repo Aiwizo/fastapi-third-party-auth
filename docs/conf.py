@@ -18,11 +18,11 @@ from typing import List
 # -- Project information -----------------------------------------------------
 
 project = "fastapi-third-party-auth"
-copyright = "2020, Harry M. Winters"
+copyright = "2020, Harry M. Winters, Richard Löwenström"
 author = "Harry M. Winters"
 
 # The full version, including alpha/beta/rc tags
-release = "0.5.0"
+release = "0.0.0"
 
 
 # -- General configuration ---------------------------------------------------

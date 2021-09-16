@@ -29,6 +29,9 @@ types-requests = "^2.25.0"
 pre-commit = "^2.13.0"
 uvicorn = "^0.15.0"
 
+[tool.poetry.extras]
+docs = ["sphinx"]
+
 [build-system]
 requires = ["poetry>=0.12"]
 build-backend = "poetry.masonry.api"
