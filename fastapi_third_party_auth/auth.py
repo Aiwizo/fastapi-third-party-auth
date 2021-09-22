@@ -11,7 +11,7 @@ Usage
     from your_app.auth import auth
 
     @app.get("/auth")
-    def test_auth(authenticated_user: IDToken = Depends(auth.required)):
+    def test_auth(authenticated_user: IDToken = Security(auth.required)):
         return f"Hello {authenticated_user.preferred_username}"
 """
 
@@ -51,7 +51,7 @@ class Auth(OAuth2):
         scopes: List[str] = list(),
         grant_types: List[GrantType] = [GrantType.IMPLICIT],
         signature_cache_ttl: int = 3600,
-        idtoken_model: Type = IDToken,
+        idtoken_model: Type[IDToken] = IDToken,
     ):
         """Configure authentication and use method :func:`require` or :func:`optional`
         to check user credentials.
@@ -117,7 +117,7 @@ class Auth(OAuth2):
             auto_error=False,
         )
 
-    async def __call__(self, request: Request) -> Optional[str]:
+    async def __call__(self, request: Request) -> None:
         return None
 
     def required(
@@ -137,7 +137,7 @@ class Auth(OAuth2):
                 behind the scenes by Depends.
 
         Return:
-            IDToken: Dictionary with IDToken information
+            IDToken (self.idtoken_model): User information
 
         raises:
             HTTPException(status_code=401, detail=f"Unauthorized: {err}")
@@ -172,7 +172,7 @@ class Auth(OAuth2):
                 behind the scenes by Depends.
 
         Return:
-            IDToken: Dictionary with IDToken information
+            IDToken (self.idtoken_model): User information
 
         raises:
             IDToken validation errors
@@ -201,7 +201,7 @@ class Auth(OAuth2):
                 is not authenticated.
 
         Return:
-            IDToken: Dictionary with IDToken information
+            IDToken (self.idtoken_model): User information
 
         raises:
             HTTPException(status_code=401, detail=f"Unauthorized: {err}")

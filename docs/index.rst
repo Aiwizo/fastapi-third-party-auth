@@ -1,5 +1,5 @@
 Welcome to fastapi-third-party-auth's documentation!
-========================================
+====================================================
 
 Verify and decrypt 3rd party OpenID Connect tokens to protect your
 `FastAPI <https://github.com/tiangolo/fastapi>`_ endpoints.
@@ -87,7 +87,6 @@ Grant Types
 -----------
 .. automodule:: fastapi_third_party_auth.grant_types
    :members:
-   :undoc-members:
 
 IDToken Types
 -------------
