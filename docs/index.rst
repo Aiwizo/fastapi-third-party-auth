@@ -7,7 +7,7 @@ Verify and decrypt 3rd party OpenID Connect tokens to protect your
 Easily used with authenticators such as:
 
 - `Keycloak <https://www.keycloak.org/>`_ (open source)
-- `SuperTokens <https://supertokens.io/>`_ (open source)
+- `SuperTokens <https://supertokens.com/>`_ (open source)
 - `Auth0 <https://auth0.com/>`_
 - `Okta <https://www.okta.com/products/authentication/>`_
 
