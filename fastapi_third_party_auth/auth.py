@@ -52,6 +52,7 @@ class Auth(OAuth2):
         grant_types: List[GrantType] = [GrantType.IMPLICIT],
         signature_cache_ttl: int = 3600,
         idtoken_model: Type[IDToken] = IDToken,
+        audience: Optional[str] = None
     ):
         """Configure authentication :func:`auth = Auth(...) <Auth>` and then:
 
@@ -71,6 +72,8 @@ class Auth(OAuth2):
             signature_cache_ttl (int): (Optional) How many seconds your app should
                 cache the authorization server's public signatures.
             idtoken_model (Type): (Optional) The model to use for validating the ID Token.
+            audience (str): (Optional) Audience if not provided it will use client_id as 
+                default. Not required if your auth server is compliant with the Specs.
 
         Raises:
             Nothing intentional
@@ -81,6 +84,7 @@ class Auth(OAuth2):
         self.client_id = client_id
         self.idtoken_model = idtoken_model
         self.scopes = scopes
+        self.audience = audience if audience else client_id
 
         self.discover = discovery.configure(cache_ttl=signature_cache_ttl)
         oidc_discoveries = self.discover.auth_server(
@@ -235,12 +239,12 @@ class Auth(OAuth2):
                 key,
                 algorithms,
                 issuer=self.issuer,
-                audience=self.client_id,
+                audience=self.audience,
                 options={
                     # Disabled at_hash check since we aren't using the access token
                     "verify_at_hash": False,
                     "verify_iss": self.issuer is not None,
-                    "verify_aud": self.client_id is not None,
+                    "verify_aud": self.audience is not None,
                 },
             )
 
