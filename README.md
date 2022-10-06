@@ -24,17 +24,19 @@
 
 ---
 
-Simple library for using a third party authentication service with 
+Simple library for using a third party authentication service with
 [FastAPI](https://github.com/tiangolo/fastapi). Verifies and decrypts 3rd party
 OpenID Connect tokens to protect your endpoints.
 
 Easily used with authentication services such as:
+
 - [Keycloak](https://www.keycloak.org/) (open source)
-- [SuperTokens](https://supertokens.io/) (open source)
+- [SuperTokens](https://supertokens.com/) (open source)
 - [Auth0](https://auth0.com/)
 - [Okta](https://www.okta.com/products/authentication/)
 
 FastAPI's generated interactive documentation supports the grant flows:
+
 ```python3
 GrantType.AUTHORIZATION_CODE
 GrantType.IMPLICIT

@@ -26,7 +26,6 @@ sphinx = "^3.3.1"
 mypy = "^0.910"
 types-cachetools = "^0.1.9"
 types-requests = "^2.25.0"
-pre-commit = "^2.13.0"
 uvicorn = "^0.15.0"
 sphinx-rtd-theme = "^1.0.0"
 
