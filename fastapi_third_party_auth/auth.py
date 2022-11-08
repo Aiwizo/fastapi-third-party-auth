@@ -33,9 +33,8 @@ from fastapi.security import HTTPBearer
 from fastapi.security import OAuth2
 from fastapi.security import SecurityScopes
 from jose import ExpiredSignatureError
-from jose import JWTError
 from jose import jwt
-from jose.exceptions import JWTClaimsError
+from jose.exceptions import JWTClaimsError, JWKError, JWTError, JWSError
 
 from fastapi_third_party_auth import discovery
 from fastapi_third_party_auth.grant_types import GrantType
@@ -189,6 +188,30 @@ class Auth(OAuth2):
             auto_error=False,
         )
 
+
+    def _find_key(self, token: str) -> dict:
+        oidc_discoveries = self.discover.auth_server(
+            openid_connect_url=self.openid_connect_url
+        )
+        keys = self.discover.public_keys(oidc_discoveries)
+
+        header = jwt.get_unverified_header(token)
+        try:
+            kid = header['kid']
+        except KeyError as e:
+            raise JWTError("field 'kid' is missing from JWT headers") from e
+
+        for key in keys:
+            try:
+                key_kid = key['kid']
+            except KeyError as e:
+                raise JWKError("field 'kid' is missing from JWK") from e
+            if key_kid == kid:
+                return key
+        
+        raise JWKError(f"Could not find JWK 'kid'={kid}")
+
+
     def authenticate_user(
         self,
         security_scopes: SecurityScopes,
@@ -226,8 +249,8 @@ class Auth(OAuth2):
         oidc_discoveries = self.discover.auth_server(
             openid_connect_url=self.openid_connect_url
         )
-        key = self.discover.public_keys(oidc_discoveries)
         algorithms = self.discover.signing_algos(oidc_discoveries)
+        key = self._find_key(authorization_credentials.credentials)
 
         try:
             id_token = jwt.decode(
