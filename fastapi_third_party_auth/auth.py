@@ -193,7 +193,10 @@ class Auth(OAuth2):
         oidc_discoveries = self.discover.auth_server(
             openid_connect_url=self.openid_connect_url
         )
-        keys = self.discover.public_keys(oidc_discoveries)
+        try:
+            keys = self.discover.public_keys(oidc_discoveries)["keys"]
+        except KeyError as e:
+            raise JWKError("Badly formed JWKs_uri") from e
 
         header = jwt.get_unverified_header(token)
         try:
