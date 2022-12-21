@@ -271,7 +271,8 @@ class Auth(OAuth2):
             )
 
             if (
-                type(id_token["aud"]) == list
+                "aud" in id_token
+                and type(id_token["aud"]) == list
                 and len(id_token["aud"]) >= 1
                 and "azp" not in id_token
             ):
